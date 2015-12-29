@@ -4,6 +4,8 @@ function Registry(injector) {
 
 Registry.prototype = {
 	$$get: function(name) {
-		return this.injector.get(name);
+		if(this.injector.pending.hasOwnProperty(name) || this.injector.cache.hasOwnProperty(name)) {
+			return this.injector.get(name);
+		}
 	}
 }
