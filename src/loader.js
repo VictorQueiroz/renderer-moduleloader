@@ -1,6 +1,6 @@
 var pending = {},
 		cache = {},
-		injector = new injector.Injector(pending, cache),
+		injector = new window.injector.Injector(pending, cache),
 		registry = new Registry(injector),
 		bootstrap = renderer.bootstrap;
 
