@@ -1,6 +1,6 @@
 {
   "name": "renderer-moduleloader",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "homepage": "https://github.com/VictorQueiroz/renderer-moduleloader",
   "authors": [
     "Victor Queiroz <victorcqueirozg@gmail.com>"
@@ -18,7 +18,8 @@
   ],
   "dependencies": {
     "moduleloader": "~1.0.21",
-    "injector": "injection#~1.0.1",
-    "renderer": "~1.0.22"
+    "renderer": "~1.0.22",
+    "injector.js": "injector#~0.1.1",
+    "injector": "injection#~1.0.2"
   }
 }
