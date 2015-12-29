@@ -36,11 +36,9 @@ renderer.bootstrap = function(element, name) {
 	bootstrap(element);
 };
 
-renderer.register = function(name, factory) {
+function registerService(name, factory) {
 	pending[name] = factory;
-
-	return renderer;
-};
+}
 
 renderer.injector = injector;
 renderer.moduleLoader = moduleLoader;

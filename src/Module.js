@@ -9,13 +9,14 @@ function Directive(name, options) {
 	if(isObject(options)) extend(this, options);
 }
 
-Module.prototype.directive = function(name, factory) {
-	var module = this;
+Module.prototype.directive = renderer.register = function(name, factory) {
+	var module = this,
+			service = this && bind(this.service, this) || registerService;
 
 	if(!directives.hasOwnProperty(name)) {
 		directives[name] = [];
 
-		this.service(name + 'Directive', function() {
+		service(name + 'Directive', function() {
 			var directives = this.directives;
 			var data,
 					options,

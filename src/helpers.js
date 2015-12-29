@@ -95,3 +95,9 @@ function defaults (object, source) {
 		}
 	}
 }
+
+function bind(callback, context) {
+	return function() {
+		return callback.apply(context, arguments);
+	};
+}
