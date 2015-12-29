@@ -58,4 +58,6 @@ Module.prototype.directive = function(name, factory) {
 	}
 
 	directives[name].push(factory);
+
+	return this;
 };
