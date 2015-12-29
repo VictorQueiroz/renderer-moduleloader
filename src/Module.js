@@ -17,7 +17,6 @@ Module.prototype.directive = renderer.register = function(name, factory) {
 		directives[name] = [];
 
 		service(name + 'Directive', function() {
-			var directives = this.directives;
 			var data,
 					options,
 					directive,

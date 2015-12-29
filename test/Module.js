@@ -17,7 +17,7 @@ describe('Module', function(){
 			expect(renderer.module(i).blocks.services[1] instanceof Function === true).toBeTruthy();
 		});
 
-		it('should fill the injector with the directives', function() {
+		it('should fill the injector with the directives when boot()', function() {
 			renderer.module(i, []);
 
 			for(var j = 0; j < 10; j++) {
