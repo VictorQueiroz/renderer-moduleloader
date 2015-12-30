@@ -17,4 +17,8 @@ renderer.module('app').directive('input', function InputDirective(compile) {
 		});
 	};
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+	renderer.bootstrap(document.getElementById('#app'), 'app');
+});
 ```
