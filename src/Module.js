@@ -1,17 +1,9 @@
 var directives = {};
 var Module = moduleloader.Module;
 
-function Directive(name, options) {
-	if(name) {
-		this.name = name;
-	}
-
-	if(isObject(options)) extend(this, options);
-}
-
 Module.prototype.directive = renderer.register = function(name, factory) {
 	var module = this,
-			service = this && bind(this.service, this) || registerService;
+			service = this && this.service && bind(this.service, this) || registerService;
 
 	if(!directives.hasOwnProperty(name)) {
 		directives[name] = [];
@@ -23,7 +15,9 @@ Module.prototype.directive = renderer.register = function(name, factory) {
 					instances = [];
 
 			forEach(directives[name], function(factory, index) {
-				data = module.invoke(factory);
+				// If it doesn't found any invoke function on module
+				// fallback into the renderer global injector.
+				data = (module.invoke || renderer.injector.invoke)(factory);
 				options = {};
 
 				if(isFunction(data)) {
@@ -49,7 +43,10 @@ Module.prototype.directive = renderer.register = function(name, factory) {
 					require: (options.controller && options.name)
 				});
 
-				directive = new Directive(name, options);
+				directive = extend(options, {
+					name: name
+				});
+
 				instances.push(directive);
 			});
 
@@ -61,3 +58,15 @@ Module.prototype.directive = renderer.register = function(name, factory) {
 
 	return this;
 };
+
+var oldDirectivesNames = Object.keys(oldRegistry);
+
+oldDirectivesNames.forEach(function(name) {
+	var registry = oldRegistry[name];
+
+	if(name !== '$$get' && !registry.executed) {
+		registry.directives.forEach(function(factory) {
+			renderer.register(name, factory);
+		});
+	}
+});

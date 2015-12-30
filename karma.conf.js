@@ -18,6 +18,10 @@ module.exports = function(config) {
 		'bower_components/renderer/build/renderer.js',
 		'bower_components/injector/build/injector.js',
 		'bower_components/moduleloader/build/moduleloader.js',
+	  'src/helpers.js',
+		'src/Registry.js',
+	  'src/Injector.js',
+	  'src/loader.js',
 	  'src/*.js',
 	  'test/*.js'
 	],

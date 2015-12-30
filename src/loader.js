@@ -4,6 +4,8 @@ var pending = {},
 		registry = new Registry(injector),
 		bootstrap = renderer.bootstrap;
 
+var oldRegistry = renderer._registry;
+
 renderer._registry = registry;
 
 var moduleLoader = new moduleloader.ModuleLoader(injector);
@@ -21,7 +23,7 @@ cache.compile = renderer.compile = compile;
 renderer.module = function(name, deps) {
 	var module = moduleLoader.register.apply(moduleLoader, arguments);
 
-	if(!deps) {
+	if(!module.invoke) {
 		module.invoke = function(fn) {
 			return injector.invoke(fn);
 		};

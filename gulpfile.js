@@ -6,7 +6,10 @@ var wrapper = require('gulp-wrapper');
 gulp.task('build', function() {
 	gulp.src([
 		'src/helpers.js',
-		'src/*.js'
+		'src/Registry.js',
+	  'src/Injector.js',
+	  'src/loader.js',
+	  'src/*.js',
 	])
 	.pipe(concat('renderer-moduleloader.js'))
 	.pipe(wrapper({
