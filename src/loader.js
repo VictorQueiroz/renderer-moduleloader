@@ -1,8 +1,7 @@
 var pending = {},
 		cache = {},
 		injector = new Injector(pending, cache),
-		registry = new Registry(injector),
-		bootstrap = renderer.bootstrap;
+		registry = new Registry(injector);
 
 var oldRegistry = renderer._registry;
 
@@ -32,11 +31,10 @@ renderer.module = function(name, deps) {
 	return module;
 };
 
-renderer.bootstrap = function(element, name) {
+renderer.beforeCompile(function(rootScope, element, name) {
+	renderer.module(name).service('rootScope', function() {return scope;});
 	moduleLoader.bootstrap(name);
-
-	bootstrap(element);
-};
+});
 
 function registerService(name, factory) {
 	pending[name] = factory;
