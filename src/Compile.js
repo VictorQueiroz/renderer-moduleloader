@@ -1,1 +1,0 @@
-var Compile = renderer.Compile;

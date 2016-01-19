@@ -9,15 +9,7 @@ renderer._registry = registry;
 
 var moduleLoader = new moduleloader.ModuleLoader(injector);
 
-function compile(element) {
-	var compile = new Compile(element, registry);
-
-	return function(scope) {
-		return compile.execute(scope);
-	};
-}
-
-cache.compile = renderer.compile = compile;
+cache.compile = renderer.compile;
 
 renderer.module = function(name, deps) {
 	var module = moduleLoader.register.apply(moduleLoader, arguments);
