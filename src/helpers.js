@@ -27,6 +27,12 @@ function forEach (array, iterator, context) {
 	return array;
 }
 
+function constant(value) {
+	return function() {
+		return value;
+	};
+}
+
 function isFunction (value) {
 	return typeof value === 'function';
 }
